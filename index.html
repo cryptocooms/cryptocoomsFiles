@@ -75,11 +75,25 @@
 				margin: 3vw;
 			}
 		</style>
-		<script>document.addEventListener('contextmenu', event => event.preventDefault());</script>
+		<script>
+			document.addEventListener('contextmenu', event => event.preventDefault());
+			//detect if mobile
+			function isMobile() {
+				return 'ontouchstart' in document.documentElement;
+			}
+
+			if(isMobile()) {
+				let clickinstances = document.getElementsByClassName("tapIfMobile");
+				for (let i = 0; i < clickinstances.length; i++) {
+					if(clickinstances[i] === "Click") clickinstances[i].innerHTML = "Tap";
+					else clickinstances[i].innerHTML = "tap";
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<div id="container">
-			<a id="text" href="https://cryptocoo.ms/">Please click or tap here</a>
+			<a id="text" href="https://cryptocoo.ms/">Please <span class="tapIfMobile">click</span> here</a>
 		</div>
 	</body>
 </html>
